@@ -11,7 +11,8 @@ public class Menu
     private OperationHandler<Contact>? _operationHandler;
     private readonly DataBase.DataBase _dataBase;
 
-    private Menu(DataBase.DataBase dataBase) {
+    private Menu(DataBase.DataBase dataBase)
+    {
         _dataBase = dataBase;
     }
 

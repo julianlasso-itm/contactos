@@ -7,7 +7,8 @@ public class ListContactsHandler : OperationHandler<Contact>
 {
     private readonly IDataBase<Contact> _dataBase;
 
-    public ListContactsHandler(IDataBase<Contact> dataBase) {
+    public ListContactsHandler(IDataBase<Contact> dataBase)
+    {
         _dataBase = dataBase;
     }
 
