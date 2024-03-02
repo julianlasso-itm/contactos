@@ -1,3 +1,4 @@
+using HolaMundo.DataBase.Models;
 using HolaMundo.Operations;
 using HolaMundo.Operations.AddContact;
 using HolaMundo.Operations.ListContacts;
@@ -7,9 +8,12 @@ namespace HolaMundo;
 public class Menu
 {
     private static Menu? _instance;
-    private OperationHandler? _operationHandler;
+    private OperationHandler<Contact>? _operationHandler;
+    private readonly DataBase.DataBase _dataBase;
 
-    private Menu() { }
+    private Menu(DataBase.DataBase dataBase) {
+        _dataBase = dataBase;
+    }
 
     public static Menu Instance
     {
@@ -17,7 +21,8 @@ public class Menu
         {
             if (_instance == null)
             {
-                _instance = new Menu();
+                var dataBase = new DataBase.DataBase();
+                _instance = new Menu(dataBase);
             }
             return _instance;
         }
@@ -63,11 +68,11 @@ public class Menu
     {
         if (opcion == 1)
         {
-            _operationHandler = new ListContactsHandler();
+            _operationHandler = new ListContactsHandler(_dataBase);
         }
         else if (opcion == 2)
         {
-            _operationHandler = new AddContactHandler();
+            _operationHandler = new AddContactHandler(_dataBase);
         }
     }
 }
