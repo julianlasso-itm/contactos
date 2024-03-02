@@ -1,14 +1,26 @@
-﻿namespace HolaMundo.Operations.ListContacts;
+﻿using HolaMundo.DataBase;
+using HolaMundo.DataBase.Models;
 
-public class ListContactsOperation : IOperation
+namespace HolaMundo.Operations.ListContacts;
+
+public class ListContactsOperation : OperationBase<Contact>
 {
-    public void Inject()
-    {
-        Console.WriteLine("Injecting ListContactsOperation");
-    }
+    public ListContactsOperation(IDataBase<Contact> dataBase) : base(dataBase) { }
 
-    public void Execute()
+    public override void Execute()
     {
-        Console.WriteLine("Executing ListContactsOperation");
+        var contacts = _dataBase.GetContacts();
+        if (contacts.Count == 0)
+        {
+            Console.WriteLine("No contacts found");
+        }
+        else
+        {
+            Console.WriteLine("Contacts:");
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine($"Id: {contact.Id}, Name: {contact.Name}, Email: {contact.Email}, Phone: {contact.Phone}");
+            }
+        }
     }
 }

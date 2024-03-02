@@ -1,9 +1,18 @@
-﻿namespace HolaMundo.Operations.ListContacts;
+﻿using HolaMundo.DataBase;
+using HolaMundo.DataBase.Models;
 
-public class ListContactsHandler : OperationHandler
+namespace HolaMundo.Operations.ListContacts;
+
+public class ListContactsHandler : OperationHandler<Contact>
 {
-    public override IOperation CreateOperation()
+    private readonly IDataBase<Contact> _dataBase;
+
+    public ListContactsHandler(IDataBase<Contact> dataBase) {
+        _dataBase = dataBase;
+    }
+
+    public override OperationBase<Contact> CreateOperation()
     {
-        return new ListContactsOperation();
+        return new ListContactsOperation(_dataBase);
     }
 }
