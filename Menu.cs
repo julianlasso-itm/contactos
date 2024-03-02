@@ -1,8 +1,13 @@
+using HolaMundo.Operations;
+using HolaMundo.Operations.AddContact;
+using HolaMundo.Operations.ListContacts;
+
 namespace HolaMundo;
 
 public class Menu
 {
     private static Menu? _instance;
+    private OperationHandler? _operationHandler;
 
     private Menu() { }
 
@@ -34,22 +39,35 @@ public class Menu
 
     public void EjecutarOpcion(int opcion)
     {
-        switch (opcion)
+        if (opcion >= 1 && opcion <= 2)
         {
-            case 1:
-                Console.WriteLine("Hola Mundo!");
-                break;
-            case 2:
-                Console.WriteLine("Adiós Mundo!");
-                break;
-            default:
-                Console.WriteLine("Opción no válida");
-                break;
+            ConfigureOperationHandler(opcion);
+            _operationHandler?.Operate();
+        }
+        else if (opcion == 0)
+        {
+            Console.WriteLine("Salir del sistema!");
+        }
+        else
+        {
+            Console.WriteLine("Opción inválida");
         }
     }
 
     public void LimpiarPantalla()
     {
         Console.Clear();
+    }
+
+    private void ConfigureOperationHandler(int opcion)
+    {
+        if (opcion == 1)
+        {
+            _operationHandler = new ListContactsHandler();
+        }
+        else if (opcion == 2)
+        {
+            _operationHandler = new AddContactHandler();
+        }
     }
 }
