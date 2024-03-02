@@ -1,5 +1,4 @@
 ﻿using HolaMundo.DataBase;
-using HolaMundo.DataBase.Models;
 
 namespace HolaMundo.Operations;
 
