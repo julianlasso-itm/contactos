@@ -1,4 +1,6 @@
-namespace HolaMundo;
+using HolaMundo.DataBase.Models;
+
+namespace HolaMundo.DataBase;
 
 public class DataBase : IDataBase
 {
