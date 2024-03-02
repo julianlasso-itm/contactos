@@ -1,9 +1,19 @@
-﻿namespace HolaMundo.Operations.AddContact;
+﻿using HolaMundo.DataBase;
+using HolaMundo.DataBase.Models;
 
-public class AddContactHandler : OperationHandler
+namespace HolaMundo.Operations.AddContact;
+
+public class AddContactHandler : OperationHandler<Contact>
 {
-  public override IOperation CreateOperation()
+  private readonly IDataBase<Contact> _dataBase;
+
+  public AddContactHandler(IDataBase<Contact> dataBase)
   {
-    return new AddContactOperation();
+    _dataBase = dataBase;
+  }
+
+  public override OperationBase<Contact> CreateOperation()
+  {
+    return new AddContactOperation(_dataBase);
   }
 }

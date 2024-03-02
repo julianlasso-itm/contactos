@@ -1,14 +1,25 @@
-﻿namespace HolaMundo.Operations.AddContact;
+﻿using HolaMundo.DataBase;
+using HolaMundo.DataBase.Models;
 
-public class AddContactOperation : IOperation
+namespace HolaMundo.Operations.AddContact;
+
+public class AddContactOperation : OperationBase<Contact>
 {
-    public void Inject()
-    {
-        Console.WriteLine("Injecting AddContactOperation");
-    }
+    public AddContactOperation(IDataBase<Contact> dataBase) : base(dataBase) { }
 
-    public void Execute()
+    public override void Execute()
     {
-        Console.WriteLine("Executing AddContactOperation");
+        var contact = new Contact();
+
+        Console.WriteLine("Ingrese el nombre del contacto: ");
+        contact.Name = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Ingrese el número del contacto: ");
+        contact.Phone = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Ingrese el correo del contacto: ");
+        contact.Email = Console.ReadLine() ?? string.Empty;
+
+        _dataBase.AddContact(contact);
     }
 }
