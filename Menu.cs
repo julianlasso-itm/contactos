@@ -42,9 +42,6 @@ public class Menu
             case 2:
                 Console.WriteLine("Adiós Mundo!");
                 break;
-            case 3:
-                Console.WriteLine("Hasta luego!");
-                break;
             default:
                 Console.WriteLine("Opción no válida");
                 break;
