@@ -1,7 +1,16 @@
-﻿namespace HolaMundo.Operations;
+﻿using HolaMundo.DataBase;
+using HolaMundo.DataBase.Models;
 
-public interface IOperation
+namespace HolaMundo.Operations;
+
+public abstract class OperationBase<Model>
 {
-    public void Inject();
-    public void Execute();
+    protected IDataBase<Model> _dataBase;
+
+    protected OperationBase(IDataBase<Model> dataBase)
+    {
+        _dataBase = dataBase;
+    }
+
+    public abstract void Execute();
 }
