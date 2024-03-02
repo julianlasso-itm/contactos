@@ -1,11 +1,9 @@
-using HolaMundo.DataBase.Models;
-
 namespace HolaMundo.DataBase;
 
-public interface IDataBase
+public interface IDataBase<Model>
 {
-    void AddContact(Contact contact);
+    void AddContact(Model contact);
     void RemoveContact(String email);
-    void UpdateContact(Contact contact);
-    List<Contact> GetContacts();
+    void UpdateContact(Model contact);
+    List<Model> GetContacts();
 }

@@ -2,7 +2,7 @@ using HolaMundo.DataBase.Models;
 
 namespace HolaMundo.DataBase;
 
-public class DataBase : IDataBase
+public class DataBase : IDataBase<Contact>
 {
     private readonly List<Contact> _contacts = new List<Contact>();
 
